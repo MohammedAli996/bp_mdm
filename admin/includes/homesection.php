@@ -71,7 +71,7 @@
                 </div>
                 <div>
                     <?php
-                    $sql = "SELECT id from tblusers ";
+                    $sql = "SELECT id from tblcontactusquery ";
                     $query = $dbh->prepare($sql);
                     $query->execute();
                     $results = $query->fetchAll(PDO::FETCH_OBJ);
