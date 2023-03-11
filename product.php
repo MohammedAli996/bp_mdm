@@ -31,8 +31,8 @@ error_reporting(0);
     <!--/Register-Form -->
 
     <!--Forgot-password-Form -->
-    <?php require_once(__DIR__.'/inc/login.php'); ?>
-    <!--/Forgot-password-Form -->
+    <?php require_once(__DIR__.'/inc/forgotpassword.php'); ?>
+    <!--/Forgot-password-Form --
 </body>
 
 <?php require_once(__DIR__.'/inc/allescript.php'); ?>

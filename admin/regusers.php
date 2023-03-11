@@ -1,10 +1,3 @@
-<?php
-require 'includes/config.php';
-$sql = 'SELECT * FROM users';
-$statement = $dbh->prepare($sql);
-$statement->execute();
-$people = $statement->fetchAll(PDO::FETCH_OBJ);
-?>
 <!doctype html>
 <html>
 
@@ -12,7 +5,7 @@ $people = $statement->fetchAll(PDO::FETCH_OBJ);
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title> Flower Power| Admin Change Password</title>
+<title> Flower Power| Admin reg Usrs</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,600,0,0" />
 <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -45,10 +38,12 @@ $people = $statement->fetchAll(PDO::FETCH_OBJ);
                                                         <th>FullName</th>
                                                         <th>Email</th>
                                                         <th>T-Nummer</th>
+                                                        <th>date of birth</th>
                                                         <th>Address</th>
                                                         <th>City</th>
                                                         <th>Country</th>
                                                         <th>RegDate</th>
+                                                        <th>UpdationDate</th>
                                                     </tr>
                                                 </thead>
                                                 <tfoot>
@@ -57,25 +52,23 @@ $people = $statement->fetchAll(PDO::FETCH_OBJ);
                                                         <th>FullName</th>
                                                         <th>Email</th>
                                                         <th>T-Nummer</th>
+                                                        <th>date of birth</th>
                                                         <th>Address</th>
                                                         <th>City</th>
                                                         <th>Country</th>
                                                         <th>RegDate</th>
+                                                        <th>UpdationDate</th>
+                                                        
 										            </tr>
 									            </tfoot>
 									            <tbody>
-                                                <?php foreach($people as $person): ?>
                                                 <tr>
-                                                    <td><?= $person->id; ?></td>
-                                                    <td><?= $person->FullName; ?></td>
-                                                    <td><?= $person->EmailId; ?></td>
-                                                    <td><?= $person->ContactNo; ?></td>
-                                                    <td><?= $person->Address; ?></td>
-                                                    <td><?= $person->City; ?></td>
-                                                    <td><?= $person->Country; ?></td>
-                                                    <td><?= $person->RegDate; ?></td>
+                                                    <?php
+                                                    include('class/readData.class.php');
+                                                    $readData=new ReadData();
+                                                    $readData->gettblUsers();
+                                                    ?>
                                                 </tr>
-                                                <?php endforeach; ?>
                                             </table>
                                         </div>
                                 </div>

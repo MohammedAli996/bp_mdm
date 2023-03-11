@@ -30,7 +30,7 @@
             </div>
             <div>
                 <?php
-                $sql3 = "SELECT id from tblusers ";
+                $sql3 = "SELECT id from tblusers";
                 $query3 = $dbh->prepare($sql3);
                 $query3->execute();
                 $results3 = $query3->fetchAll(PDO::FETCH_OBJ);

@@ -1,19 +1,15 @@
-<?php $title = 'Home'; ?>
-<?php $currentPage = 'index'; ?>
+<?php
+session_start();
+error_reporting(0);
+include('inc/config.php');
+?>
+<?php $title = 'Page'; ?>
+<?php $currentPage = 'page'; ?>
 <?php require_once(__DIR__.'/inc/head.php'); ?>
 <body>
     <!--Nav Bar-->
     <?php require_once(__DIR__.'/inc/navbar.php'); ?>
     <!--/Nav Bar-->
-    <!-- Top back -->
-    <a id="button"></a>
-    <!-- /Top back -->
-    <!--banner-->
-    <?php require_once(__DIR__.'/inc/banner.php'); ?>
-    <!--/banner-->
-    <!-- Sort-Product -->
-    <?php require_once(__DIR__.'/inc/sortproduct.php'); ?>
-    <!-- /Sort-Productt -->
 
     <!-- Footer -->
     <?php require_once(__DIR__.'/inc/footer.php'); ?>
@@ -30,7 +26,7 @@
     <!--/Register-Form -->
 
     <!--Forgot-password-Form -->
-    <?php require_once(__DIR__.'/inc/forgotpassword.php'); ?>
+    <?php require_once(__DIR__.'/inc/login.php'); ?>
     <!--/Forgot-password-Form -->
 </body>
 

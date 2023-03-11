@@ -1,7 +1,5 @@
 
-<!-- Top back -->
-<a id="button"></a>
-<!-- /Top back -->
+
 
 <!-- Banners -->
 <div class="banner">

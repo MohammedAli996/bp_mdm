@@ -58,11 +58,13 @@
     </ul>
     </li>
     <li>
-    <a href="#">
-        <a href="regusers.php"><i class="bx bx-user"></i>
-            <span class="link_name">Reg Users</span>
-        </a>
+    <a href="regusers.php">
+        <i class="bx bx-user"></i>
+        <span class="link_name">Reg Users</span>
     </a>
+    <ul class="sub-menu blank">
+        <li><a class="link_name" href="regusers.php">Reg Users</a></li>
+    </ul>
     </li>
     <li>
         <a href="password-update">

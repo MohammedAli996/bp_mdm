@@ -55,7 +55,7 @@ return true;
 }
 </script>
     <!-- register-->
-    <div id="registerform" class="modal-style-2 dark modal" id="register">
+    <div id="registerform" class="modal-style-2 dark modal">
         <div class="modal-dialog modal-login">
             <div class="modal-content">
                 <div class="modal-header p-0">
@@ -118,4 +118,4 @@ return true;
             </div>
         </div>
     </div>
-    <!--modal style 2 end -->
+    <!--registeren end -->

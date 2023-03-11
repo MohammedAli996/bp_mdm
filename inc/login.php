@@ -56,7 +56,7 @@ if(isset($_POST['login']))
                     </div>
                     <div class="row pl-1 pr-1">
                         <div class="col text-right hint-text pt-0">
-                            <a href="" class="text-danger">Forgot Password?</a>
+                            <a href="#forgotpassword" data-toggle="modal" data-dismiss="modal" class="text-danger">Forgot Password?</a>
                         </div>
                     </div>
                     <div class="form-group text-center mt-2 mb-0">

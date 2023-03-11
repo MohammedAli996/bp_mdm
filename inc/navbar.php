@@ -23,7 +23,7 @@
         $urls = array(
             'Home' => 'index.php',
             'Product' => 'product.php',
-            'About' => 'about.php',
+            'About' => 'page.php',
             'Contact' => 'contact.php',
             '<i class="fa fa-fw fa-user" href="#loginform" data-toggle="modal">LogIn</i> ' => '#loginModal2',
             // �
