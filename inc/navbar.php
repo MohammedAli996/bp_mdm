@@ -25,7 +25,7 @@
             'Product' => 'product.php',
             'About' => 'about.php',
             'Contact' => 'contact.php',
-            '<i class="fa fa-fw fa-user" href="#loginModal2" data-toggle="modal">LogIn</i> ' => '#loginModal2',
+            '<i class="fa fa-fw fa-user" href="#loginform" data-toggle="modal">LogIn</i> ' => '#loginModal2',
             // �
         );
 

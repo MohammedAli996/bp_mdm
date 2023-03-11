@@ -1,4 +1,4 @@
-﻿<?php $title = 'Home'; ?>
+<?php $title = 'Home'; ?>
 <?php $currentPage = 'index'; ?>
 <?php require_once(__DIR__.'/inc/head.php'); ?>
 <body>
@@ -26,7 +26,7 @@
     <!--/Login-Form -->
 
     <!--Register-Form -->
-    <?php require_once(__DIR__.'/inc/login.php'); ?>
+    <?php require_once(__DIR__.'/inc/registration.php'); ?>
     <!--/Register-Form -->
 
     <!--Forgot-password-Form -->

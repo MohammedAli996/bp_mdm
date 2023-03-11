@@ -23,9 +23,9 @@
         <!-- Favicon -->
         <link href="./assets/img/favicon.ico" rel="icon">
         <!-- CSS Stylesheet -->
-        <link rel="stylesheet" href="./assets/css/styles.css"/>
-        <link rel="stylesheet" href="./assets/css/error.css"/>
+        <link rel="stylesheet" href="../assets/css/styles.css"/>
+        <link rel="stylesheet" href="../assets/css/error.css"/>
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     
     </head>
