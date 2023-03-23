@@ -72,7 +72,7 @@ $msg="Page data updated successfully";
 										            </tr>
 									            </tfoot>
 									            <tbody>
-                                                <?php $sql = "SELECT * from  users ";
+                                                <?php $sql = "SELECT * from  tblbrands ";
                                                 $query = $dbh -> prepare($sql);
                                                 $query->execute();
                                                 $results=$query->fetchAll(PDO::FETCH_OBJ);

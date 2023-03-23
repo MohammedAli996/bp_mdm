@@ -10,14 +10,14 @@ else{
 if(isset($_GET['del']))
 {
 $id=$_GET['del'];
-$sql = "delete from postproducer WHERE id=:id";
+$sql = "delete from tblcases SET id=:status WHERE  id=:delid";
 $query = $dbh->prepare($sql);
 $query -> bindParam(':id',$id, PDO::PARAM_STR);
 $query -> execute();
 $msg="Flower deleted successfully";
 
 }
- ?>
+?>
 <!doctype html>
 <html>
 
@@ -61,7 +61,7 @@ $msg="Flower deleted successfully";
     <section class="home-section">
         <div class="home-content">
             <i class="bx bx-menu" ></i>
-            <span class="text">Manage Flower</span>
+            <span class="text">Manage Cases</span>
         </div>
 <div class="ts-main-content">
             <div class="content-wrapper">
@@ -77,25 +77,25 @@ $msg="Flower deleted successfully";
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
+                                                        <th>Case Title</th>
                                                         <th>Brand </th>                                                        
                                                         <th>Price</th>
-                                                        <th>Aantal</th>
-                                                        <th>omschrijven</th>
+                                                        <th>Cases Type</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tfoot>
                                                     <tr>
                                                         <th>#</th>
+                                                        <th>Case Title</th>
                                                         <th>Brand </th>                                                        
                                                         <th>Price</th>
-                                                        <th>Aantal</th>
-                                                        <th>omschrijven</th>
+                                                        <th>Cases Type</th>
                                                         <th>Action</th>
 										            </tr>
 									            </tfoot>
 									            <tbody>
-                                                <?php $sql = "SELECT tblbrands.BrandName,postproducer.Price,postproducer.aantal,postproducer.FlowerOverview,postproducer.id from postproducer join tblbrands on tblbrands.id=postproducer.FlowerBrand";
+                                                    <?php $sql = "SELECT tblcases.CasesTitle,tblbrands.BrandName,tblcases.Price,tblcases.CasesType,tblcases.id from tblcases join tblbrands on tblbrands.id=tblcases.CasesBrand";
                                                     $query = $dbh -> prepare($sql);
                                                     $query->execute();
                                                     $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -103,15 +103,16 @@ $msg="Flower deleted successfully";
                                                     if($query->rowCount() > 0)
                                                     {
                                                     foreach($results as $result)
-                                                    {				
-                                                ?>
+                                                    {
+                                                    ?>
                                                 <tr>
                                                 <td><?php echo htmlentities($cnt);?></td>
+                                                    <td>
+                                                        <?php echo htmlentities($result->CasesTitle);?>
+                                                    </td>
 											<td><?php echo htmlentities($result->BrandName);?></td>
                                             <td><?php echo htmlentities($result->Price);?></td>
-                                            <td><?php echo htmlentities($result->aantal);?></td>
-                                            <td><?php echo htmlentities($result->FlowerOverview);?></td>
-                                            <td><?php echo htmlentities($result->CreationDate);?></td>
+                                            <td><?php echo htmlentities($result->CasesType);?></td>
                                                     <td><a href="edit-producer.php?id=<?php echo $result->id;?>" class="btn btn-info">Edit</a>&nbsp;&nbsp;
                                                     <a onclick="return confirm('Do you want to delete?')" href="manage-producer.php?del=<?= $result->id ?>" class='btn btn-danger'>Delete</a>
 										        <?php $cnt=$cnt+1; }} ?>

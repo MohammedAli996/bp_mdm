@@ -37,7 +37,7 @@ if(isset($_POST['login']))
             </div>
             <div class="modal-body">
                 <!-- dont forget to add action and action method  -->
-                <form action="" method="post" class="mt-3">
+                <form action="./includcs/login.inc.php" method="post" class="mt-3">
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-addon">

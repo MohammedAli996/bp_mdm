@@ -63,7 +63,7 @@ return true;
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <form name="signup" method="post" class="mt-3" onsubmit="return valid();">
+                    <form name="signup" method="post" class="mt-3" action="./class/signup.inc.php" onsubmit="return valid();">
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">
@@ -101,7 +101,7 @@ return true;
                                 <span class="input-group-addon">
                                     <i class="fa fa-eye-slash"></i>
                                 </span>
-                                <input type="password" class="form-control" name="confirmpassword" placeholder="Retype password" required="required" autocomplete="on" />
+                                <input type="password" class="form-control" name="passwordrepeat" placeholder="Retype password" required="required" autocomplete="on" />
                             </div>
                         </div>
 

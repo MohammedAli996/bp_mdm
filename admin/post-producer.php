@@ -3,40 +3,44 @@ session_start();
 error_reporting(0);
 include('includes/config.php');
 if(strlen($_SESSION['alogin'])==0)
-	{
-header('location:index.php');
+{
+    header('location:index.php');
 }
 else{
-if(isset($_POST['submit']))
-  {
-$brand=$_POST['brandname'];
-$omschrijf=$_POST['omschrijven'];
-$priceflower=$_POST['priceflower'];
-$aantal=$_POST['aantal'];
-$vimage1=$_FILES["img1"]["name"];
-move_uploaded_file($_FILES["img1"]["tmp_name"],"img/flowerimages/".$_FILES["img1"]["name"]);
 
-$sql="INSERT INTO postproducer(FlowerBrand,FlowerOverview,Price,aantal,Vimage1) VALUES(:brand,:omschrijf,:priceflower,:aantal,:vimage1)";
-$query = $dbh->prepare($sql);
-$query->bindParam(':brand',$brand,PDO::PARAM_STR);
-$query->bindParam(':omschrijf',$omschrijf,PDO::PARAM_STR);
-$query->bindParam(':priceflower',$priceflower,PDO::PARAM_STR);
-$query->bindParam(':aantal',$aantal,PDO::PARAM_STR);
-$query->bindParam(':vimage1',$vimage1,PDO::PARAM_STR);
-$query->execute();
-$lastInsertId = $dbh->lastInsertId();
-if($lastInsertId)
-{
-$msg="Flower posted successfully";
-}
-else
-{
-$error="Something went wrong. Please try again";
-}
+    if(isset($_POST['submit']))
+    {
+        $casestitle=$_POST['CasesTitle'];
+        $casesbrand=$_POST['CasesBrand'];
+        $brand=$_POST['BrandName'];
+        $caseseoverview=$_POST['CasesOverview'];
+        $price=$_POST['Price'];
+        $vimage1=$_FILES["img1"]["name"];
+        move_uploaded_file($_FILES["img1"]["tmp_name"],"img/casesimages/".$_FILES["img1"]["name"]);
 
-}
+        $sql="INSERT INTO tblcases(CasesTitle,CasesBrand,CasesOverview,Price,Vimage1) VALUES(:casestitle,:casesbrand,:brand,:caseseoverview,:price,:vimage1)";
+        $query = $dbh->prepare($sql);
+        $query->bindParam(':casestitle',$casestitle,PDO::PARAM_STR);
+        $query->bindParam(':casesbrand',$casesbrand,PDO::PARAM_STR);
+        $query->bindParam(':brand',$brand,PDO::PARAM_STR);
+        $query->bindParam(':caseseoverview',$caseseoverview,PDO::PARAM_STR);
+        $query->bindParam(':price',$price,PDO::PARAM_STR);
+        $query->bindParam(':vimage1',$vimage1,PDO::PARAM_STR);
+        $query->execute();
+        $lastInsertId = $dbh->lastInsertId();
+        if($lastInsertId)
+        {
+            $msg="Vehicle posted successfully";
+        }
+        else
+        {
+            $error="Something went wrong. Please try again";
+        }
 
-	?>
+    }
+
+
+?>
 <!doctype html>
 <html>
 
@@ -130,6 +134,22 @@ label{
 .omscrijf{
   width: 100%;
 }
+		.errorWrap {
+    padding: 10px;
+    margin: 0 0 20px 0;
+    background: #fff;
+    border-left: 4px solid #dd3d36;
+    -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+}
+.succWrap{
+    padding: 10px;
+    margin: 0 0 20px 0;
+    background: #fff;
+    border-left: 4px solid #5cb85c;
+    -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+}
     </style>
 		<!-- Admin Stye -->
 		<link rel="stylesheet" href="css/brand.css">
@@ -169,27 +189,28 @@ label{
                             {
                             ?>
                             <option value="<?php echo htmlentities($result->id);?>"><?php echo htmlentities($result->BrandName);?></option>
-                            <?php }} ?>
+                            <?php }
+                            } ?>
 
                             </select>
                         </div>
                     </div>
                     <div class="form_wrap">
                         <div class="form_item">
+                            <label>Cases Title</label>
+                            <textarea class="omscrijf" type="text" name="casestitle" rows="1"  required></textarea>
+                        </div>
+                    </div>
+                    <div class="form_wrap">
+                        <div class="form_item">
                             <label>omschrijven</label>
-                            <textarea class="omscrijf" type="text" name="omschrijven" rows="3"  required></textarea>
+                            <textarea class="omscrijf" type="text" name="caseseoverview" rows="3"  required></textarea>
                         </div>
                     </div>
                     <div class="form_wrap">
                         <div class="form_item">
                             <label>Price(in Euro)</label>
-                            <input type="text" name="priceflower" required>
-                        </div>
-                    </div>
-                    <div class="form_wrap">
-                        <div class="form_item">
-                            <label>Aantal</label>
-                            <input type="text" name="aantal" required>
+                            <input type="text" name="price" required>
                         </div>
                     </div>
                     <div class="form_wrap">
