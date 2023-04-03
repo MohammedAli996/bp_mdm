@@ -1,31 +1,34 @@
 <?php
-session_start();
-error_reporting(0);
-include('config.php');
-if(isset($_POST['login']))
-{
-    $email=$_POST['email'];
-    $password=md5($_POST['password']);
-    $sql ="SELECT EmailId,Password,FullName FROM tblusers WHERE EmailId=:email and Password=:password";
-    $query= $dbh -> prepare($sql);
-    $query-> bindParam(':email', $email, PDO::PARAM_STR);
-    $query-> bindParam(':password', $password, PDO::PARAM_STR);
-    $query-> execute();
-    $results=$query->fetchAll(PDO::FETCH_OBJ);
-    if($query->rowCount() > 0)
-    {
-        $_SESSION['login']=$_POST['email'];
-        $_SESSION['fname']=$results->FullName;
-        $currentpage=$_SERVER['REQUEST_URI'];
-        echo "<script type='text/javascript'> document.location = '$currentpage'; </script>";
-    } else{
+// Include necessary file
+require_once('./class/dbh.class.php');
 
-        echo "<script>alert('Invalid Details');</script>";
-
-    }
-
+// Check if user is already logged in
+if ($user->is_logged_in()) {
+    // Redirect logged in user to their home page
+    $user->redirect('index.php');
 }
 
+// Check if log-in form is submitted
+if (isset($_POST['log_in'])) {
+    // Retrieve form input
+    $EmailId = trim($_POST['EmailId']);
+    $Password = trim($_POST['Password']);
+
+    // Check for empty and invalid inputs
+    if (empty($EmailId) || empty($EmailId)) {
+        array_push($errors, "Please enter a valid username or e-mail address");
+    } elseif (empty($Password)) {
+        array_push($errors, "Please enter a valid password.");
+    } else {
+        // Check if the user may be logged in
+        if ($user->login($EmailId, $Password)) {
+            // Redirect if logged in successfully
+            $user->redirect('index.php');
+        } else {
+            array_push($errors, "Incorrect log-in credentials.");
+        }
+    }
+}
 ?>
 <!-- login -->
 <div id="loginform" class="modal-style-2 dark modal">
@@ -37,13 +40,13 @@ if(isset($_POST['login']))
             </div>
             <div class="modal-body">
                 <!-- dont forget to add action and action method  -->
-                <form action="./includcs/login.inc.php" method="post" class="mt-3">
+                <form action="home.php" method="post" class="mt-3">
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-addon">
                                 <i class="fa fa-user"></i>
                             </span>
-                            <input type="text" class="form-control" name="email" placeholder="Enter your Email" required="required" />
+                            <input type="text" class="form-control" name="EmailId" placeholder="Enter your Email" required="required" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -51,7 +54,7 @@ if(isset($_POST['login']))
                             <span class="input-group-addon">
                                 <i class="fa fa-lock"></i>
                             </span>
-                            <input type="password" class="form-control" name="password" placeholder="Enter password" required="required" autocomplete="on" />
+                            <input type="password" class="form-control" name="Password" placeholder="Enter password" required="required" autocomplete="on" />
                         </div>
                     </div>
                     <div class="row pl-1 pr-1">
@@ -60,7 +63,7 @@ if(isset($_POST['login']))
                         </div>
                     </div>
                     <div class="form-group text-center mt-2 mb-0">
-                        <button type="submit" name="login" class="btn btn-primary btn-sm">Login</button>
+                        <button type="submit" name="log_in" class="btn btn-primary btn-sm">Login</button>
                     </div>
                 </form>
             </div>

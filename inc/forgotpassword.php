@@ -29,6 +29,7 @@ echo "<script>alert('Email id or Mobile no is invalid');</script>";
 }
 
     ?>
+
 <script type="text/javascript">
 function valid()
 {

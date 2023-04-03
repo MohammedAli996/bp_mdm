@@ -21,12 +21,12 @@
     <!--/Login-Form -->
 
     <!--Register-Form -->
-    <?php require_once(__DIR__.'/inc/login.php'); ?>
+    <?php require_once(__DIR__.'/inc/registration.php'); ?>
     <!--/Register-Form -->
 
     <!--Forgot-password-Form -->
     <?php require_once(__DIR__.'/inc/forgotpassword.php'); ?>
-    <!--/Forgot-password-Form --
+    <!--/Forgot-password-Form -->
 </body>
 
 <?php require_once(__DIR__.'/inc/allescript.php'); ?>

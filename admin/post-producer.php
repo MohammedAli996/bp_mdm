@@ -13,18 +13,18 @@ else{
         $casestitle=$_POST['CasesTitle'];
         $casesbrand=$_POST['CasesBrand'];
         $brand=$_POST['BrandName'];
-        $caseseoverview=$_POST['CasesOverview'];
-        $price=$_POST['Price'];
+        $overview=$_POST['CasesOverview'];
+        $pricee=$_POST['Price'];
         $vimage1=$_FILES["img1"]["name"];
         move_uploaded_file($_FILES["img1"]["tmp_name"],"img/casesimages/".$_FILES["img1"]["name"]);
 
-        $sql="INSERT INTO tblcases(CasesTitle,CasesBrand,CasesOverview,Price,Vimage1) VALUES(:casestitle,:casesbrand,:brand,:caseseoverview,:price,:vimage1)";
+        $sql="INSERT INTO tblcase(CasesTitle,CasesBrand,CasesOverview,Price,Vimage1) VALUES(:casestitle,:casesbrand,:brand,:overview,:pricee,:vimage1)";
         $query = $dbh->prepare($sql);
         $query->bindParam(':casestitle',$casestitle,PDO::PARAM_STR);
         $query->bindParam(':casesbrand',$casesbrand,PDO::PARAM_STR);
         $query->bindParam(':brand',$brand,PDO::PARAM_STR);
-        $query->bindParam(':caseseoverview',$caseseoverview,PDO::PARAM_STR);
-        $query->bindParam(':price',$price,PDO::PARAM_STR);
+        $query->bindParam(':overview',$overview,PDO::PARAM_STR);
+        $query->bindParam(':pricee',$pricee,PDO::PARAM_STR);
         $query->bindParam(':vimage1',$vimage1,PDO::PARAM_STR);
         $query->execute();
         $lastInsertId = $dbh->lastInsertId();
@@ -48,7 +48,7 @@ else{
 <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Flower Power| Admin Post Producer</title>
+    <title> Admin Post Producer</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,600,0,0" />
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -162,7 +162,7 @@ label{
     <section class="home-section">
         <div class="home-content">
             <i class="bx bx-menu" ></i>
-            <span class="text">Post A New Flower</span>
+            <span class="text">Post A New Cases</span>
         </div>
         <div class="wrapper">
             <div class="form_container">
@@ -180,7 +180,7 @@ label{
                             <option value=""> Select </option>
                             <?php $ret="select id,BrandName from tblbrands";
                             $query= $dbh -> prepare($ret);
-                            //$query->bindParam(':id',$id, PDO::PARAM_STR);
+                            $query->bindParam(':id',$id, PDO::PARAM_STR);
                             $query-> execute();
                             $results = $query -> fetchAll(PDO::FETCH_OBJ);
                             if($query -> rowCount() > 0)
@@ -204,13 +204,13 @@ label{
                     <div class="form_wrap">
                         <div class="form_item">
                             <label>omschrijven</label>
-                            <textarea class="omscrijf" type="text" name="caseseoverview" rows="3"  required></textarea>
+                            <textarea class="omscrijf" type="text" name="overview" rows="3"  required></textarea>
                         </div>
                     </div>
                     <div class="form_wrap">
                         <div class="form_item">
                             <label>Price(in Euro)</label>
-                            <input type="text" name="price" required>
+                            <input type="text" name="pricee" required>
                         </div>
                     </div>
                     <div class="form_wrap">
@@ -221,8 +221,9 @@ label{
                     </div>
 
                         <div class="btn">
-                        <button class="btn btn-default" type="reset">Cancel</button>
-                        <button class="btn btn-primary" name="submit" type="submit">Save changes</button>                        </div>
+                            <button class="btn btn-default" type="reset">Cancel</button>
+                            <button class="btn btn-primary" name="submit" type="submit">Save changes</button>                        
+                        </div>
                 </form>
             </div>
         </div>

@@ -2,7 +2,7 @@
 <?php
 session_start();
 error_reporting(0);
-include('./class/dbh.class.php');
+include('config.php');
 if(isset($_POST['send']))
   {
 $name=$_POST['fullname'];

@@ -3,7 +3,7 @@
         <i class='bx bx-menu sidebarOpen'></i>
         <span class="logo navLogo">
             <a href="index.php">
-                <img src="./assets/img/logo/logo.png" alt="mDm" />
+                <img src="../assets/img/logo/logo.png" alt="mDm" />
             </a>
         </span>
 
@@ -18,22 +18,22 @@
             </div>
 
             <ul class="nav-links">
+                <li><a href="index.php">Home</a></li>
+                <li>
+                    <a href="product.php">Product</a>
+                </li>
+                <li>
+                    <a href="contact.php">Contact</a>
+                </li>
                 <?php
-        // Define each name associated with an URL
-        $urls = array(
-            'Home' => 'index.php',
-            'Product' => 'product.php',
-            'About' => 'page.php',
-            'Contact' => 'contact.php',
-            '<i class="fa fa-fw fa-user" href="#loginform" data-toggle="modal">LogIn</i> ' => '#loginModal2',
-            // �
-        );
-
-        foreach ($urls as $name => $url) {
-            print '<li '.(($currentPage === $name) ? '  ': '').
-                '><a  href="'.$url.'">'.$name.'</a></li>';
-        }
-                ?>
+                if (isset($_SESSION['user_session'])) {  ?>
+                    <li><h1 class="navbar-text navbar-right"><?= $returned_row['FullName']; ?> &nbsp;</h1></li>
+                    <li><a href="logout.php">Logout</a></li>
+                <?php } else { ?>
+                <li href="#loginform" data-toggle="modal">
+                    <a href="#loginModal">Login</a>
+                </li>
+                <?php } ?>
             </ul>
         </div>
 

@@ -9,15 +9,12 @@ error_reporting(0);
         <div class="container py-5">
 <div class="row justify-content-center">
 <div class="col-12 col-lg-4">
-    <?php $sql = "SELECT tblcases.CasesTitle,tblbrands.BrandName,tblcases.Price,tblcases.id,tblcases.CasesOverview,tblcases.Vimage1 from tblcases join tblbrands on tblbrands.id=tblcases.CasesBrand";
-$query = $dbh -> prepare($sql);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$cnt=1;
-if($query->rowCount() > 0)
-{
-foreach($results as $result)
-{
+    <?php
+                $select_products = $dbh->prepare("SELECT * FROM tblcases");
+                $select_products->execute();
+                if($select_products->rowCount() > 0){
+                    while($fetch_prodcut = $select_products->fetch(PDO::FETCH_ASSOC)){
+
     ?>
     <div class="card box-shadow mx-auto my-5" style="width: 18rem;">
         <div class="car-info-box">

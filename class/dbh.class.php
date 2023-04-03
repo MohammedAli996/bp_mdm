@@ -1,21 +1,27 @@
 <?php
-class dbh{
-// DB credentials.
-private $host = "localhost";
-private $user = "root";
-private $pwd = "";
-private $dbName = "mdm_db";
-// Establish database connection.
+// Begin/resume session
+session_start();
 
-protected function connect()
-{
-    $dsn='mysql:host=' . $this->host . ';dbname=' . $this->dbName;
-    $pdo = new PDO($dsn, $this->user, $this->pwd);
+// Include necessary file
+include_once 'user.class.php';
 
-    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+// Define variable for custom error messages
+$errors = [];
 
-    return $pdo;
+// Define key variables for connection
+$db_host = 'localhost';
+$db_user = 'root';
+$db_pass = '';
+$db_name = 'mdm_db';
+
+// Establish a new connection using PDO
+try {
+    $db_conn = new PDO("mysql:host={$db_host};dbname={$db_name}", $db_user, $db_pass);
+    $db_conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+}
+catch (PDOException $e) {
+    array_push($errors, $e->getMessage());
 }
 
-}
-?>
+// Make use of database with users
+$user = new User($db_conn);
